@@ -1,4 +1,5 @@
 # WarungBude
 
-ErikHen's Project\n
+ErikHen's Project
+
 WarungBude Project using Linked List and Hash Table.
