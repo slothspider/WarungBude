@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define CLEAR system("clear")
+#define CLEAR system("cls||clear")
 #define ENTER printf("Press enter to continue...")
 
 struct Dish;
