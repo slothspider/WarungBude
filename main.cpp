@@ -8,49 +8,42 @@
 
 #include "fun.h"
 
-int main()
-{
+int main() {
   CLEAR;
   int option = 0, flag = 1;
-  while (flag)
-  {
+  while (flag) {
     printMainMenu();
-    while (option < 1 || option > 8)
-    {
+    while (option < 1 || option > 8) {
       printf(">> ");
       scanf("%d", &option);
       getchar();
       CLEAR;
     }
-    switch (option)
-    {
+    switch (option) {
     case 1:
     {
       char name[255], checkName = 0;
       int price = 0, checkPrice = 0;
       int quantity = 0, checkQuantity = 0;
-      while (!checkName)
-      {
+      while (!checkName) {
         printf("Insert the name of the dish [Lowercase letters]: ");
         scanf("%[^\n]", name);
         getchar();
-        checkName = checkCapital((char *)name);
+        checkName = checkCapital((char*)name);
       }
-      while (!checkPrice)
-      {
+      while (!checkPrice) {
         printf("Insert the price of the dish [1000..50000]: ");
         scanf("%d", &price);
         getchar();
         checkPrice = price >= 1000 && price <= 50000 ? 1 : 0;
       }
-      while (!checkQuantity)
-      {
+      while (!checkQuantity) {
         printf("Insert the quantity of the dish [1..999]: ");
         scanf("%d", &quantity);
         getchar();
         checkQuantity = quantity >= 1 && quantity <= 999 ? 1 : 0;
       }
-      addDish((char *)name, price, quantity);
+      addDish((char*)name, price, quantity);
       puts("The dish has been added!");
       close();
       break;
@@ -59,11 +52,9 @@ int main()
     {
       char name[255];
       int checkNameDish = 0;
-      if (checkDish())
-      {
+      if (checkDish()) {
         printDish();
-        while (!checkNameDish)
-        {
+        while (!checkNameDish) {
           name[0] = '\0';
           printf("Insert dish's name to be deleted: ");
           scanf("%[^\n]", name);
@@ -74,8 +65,7 @@ int main()
         }
         puts("The dish has been removed!");
       }
-      else
-      {
+      else {
         puts("No dish available");
       }
       close();
@@ -85,8 +75,7 @@ int main()
     {
       char name[255];
       int checkNameCustomer = 0;
-      while (!checkNameCustomer)
-      {
+      while (!checkNameCustomer) {
         printf("Insert the customer's name [Without space]: ");
         scanf("%[^\n]", name);
         getchar();
@@ -118,22 +107,19 @@ int main()
     }
     case 6:
     {
-      if (!checkCustomerAda())
-      {
+      if (!checkCustomerAda()) {
         puts("There is no customer yet!");
         close();
         break;
       }
-      if (!checkDishAda())
-      {
+      if (!checkDishAda()) {
         puts("There is no Dish yet!");
         close();
         break;
       }
       int checkOrder = 0, i = 1;
       char name[255], dish[255];
-      while (!checkOrder)
-      {
+      while (!checkOrder) {
         printf("Insert The customer's name: ");
         scanf("%s", name);
         getchar();
@@ -142,10 +128,8 @@ int main()
       printf("Insert the amount of dish: ");
       scanf("%d", &checkOrder);
       getchar();
-      while (i <= checkOrder)
-      {
-        if (!checkDishApaMasihAda())
-        {
+      while (i <= checkOrder) {
+        if (!checkDishApaMasihAda()) {
           puts("There is no dish left!");
           break;
         }
@@ -162,11 +146,9 @@ int main()
     case 7:
     {
       int index, checkIndex = 0;
-      while (!checkIndex)
-      {
+      while (!checkIndex) {
         int c = checkCustomerAda();
-        if (c == 0)
-        {
+        if (c == 0) {
           printf("There is no Customer yet!\n");
           break;
         }
