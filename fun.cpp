@@ -14,8 +14,7 @@ struct Order {
   Order* prev, * next;
 } *newOrder, * currOrder, * delOrder;
 
-struct Customer
-{
+struct Customer {
   char name[255];
   Order* headOrder, * tailOrder;
   Customer* prev, * next;
