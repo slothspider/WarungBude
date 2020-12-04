@@ -12,8 +12,8 @@ int main() {
   CLEAR;
   int option = 0, flag = 1;
   while (flag) {
-    printMainMenu();
     while (option < 1 || option > 8) {
+      printMainMenu();
       printf(">> ");
       scanf("%d", &option);
       getchar();
