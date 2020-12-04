@@ -338,6 +338,14 @@ int checkDishAda() {
   return 0;
 }
 
+int haveBuy(char* str) {
+  int index = DJB2(str, MAX_ELEMENT);
+  if (headCustomer[index]->headOrder) {
+    return 1;
+  }
+  return 0;
+}
+
 int checkDishApaMasihAda() {
   currDish = headDish;
   while (currDish) {

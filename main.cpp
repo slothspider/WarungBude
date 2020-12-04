@@ -27,8 +27,11 @@ int main() {
       int quantity = 0, checkQuantity = 0;
       while (!checkName) {
         printf("Insert the name of the dish [Lowercase letters]: ");
+        name[0] = '\0';
         scanf("%[^\n]", name);
         getchar();
+        if (!strlen(name))
+          continue;
         checkName = checkCapital((char*)name);
       }
       while (!checkPrice) {
@@ -76,9 +79,12 @@ int main() {
       char name[255];
       int checkNameCustomer = 0;
       while (!checkNameCustomer) {
+        name[0] = '\0';
         printf("Insert the customer's name [Without space]: ");
         scanf("%[^\n]", name);
         getchar();
+        if (!strlen(name))
+          continue;
         checkNameCustomer = addCustomer(name);
       }
       puts("Customer has been added!");
@@ -87,15 +93,21 @@ int main() {
     }
     case 4:
     {
-      char name[255];
-      printf("Insert the customer's name to be searched: ");
-      scanf("%[^\n]", name);
-      getchar();
-      if (searchCustomer(name))
-        printf("%s is present.\n", name);
-      else
-        printf("%s is not present.\n", name);
-      close();
+      while (1) {
+        char name[255];
+        printf("Insert the customer's name to be searched: ");
+        name[0] = '\0';
+        scanf("%[^\n]", name);
+        getchar();
+        if (!strlen(name))
+          continue;
+        if (searchCustomer(name))
+          printf("%s is present.\n", name);
+        else
+          printf("%s is not present.\n", name);
+        close();
+        break;
+      }
       break;
     }
     case 5:
@@ -117,25 +129,45 @@ int main() {
         close();
         break;
       }
-      int checkOrder = 0, i = 1;
+      int checkOrder = 0, i = 1, nameHaveBuy = 0;
       char name[255], dish[255];
       while (!checkOrder) {
         printf("Insert The customer's name: ");
-        scanf("%s", name);
+        name[0] = '\0';
+        scanf("%[^\n]", name);
         getchar();
+        if (!strlen(name))
+          continue;
         checkOrder = searchCustomer(name);
+        if (checkOrder && haveBuy(name)) {
+          printf("This customer has bought dishes but hasn't paid!\n");
+          nameHaveBuy = 1;
+          break;
+        }
+      }
+      if (nameHaveBuy) {
+        close();
+        break;
       }
       printf("Insert the amount of dish: ");
       scanf("%d", &checkOrder);
       getchar();
+
+      puts("");
+      printDish();
+      puts("");
+
       while (i <= checkOrder) {
         if (!checkDishApaMasihAda()) {
           puts("There is no dish left!");
           break;
         }
         printf("[%d] Insert the dish's name and quantity: ", i);
+        dish[0] = '\0';
         scanf("%[^\n]", dish);
         getchar();
+        if (!strlen(dish))
+          continue;
         if (order(dish, name))
           i++;
       }

@@ -44,6 +44,7 @@ void viewWarteg();
 
 // order
 int checkDishAda();
+int haveBuy(char* name);
 int checkDishApaMasihAda();
 int checkOrderDish(char* name, int quantity);
 int order(char* dish, char* name);
